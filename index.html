@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Feedback Page</title>
+</head>
+
+<body>
+    <h1>Customer Feedback</h1>
+    <div id='feedback-container'>
+        <!-- Feedback will be displayed here -->
+    </div>
+    <script>
+        fetch('http://localhost:3000/api/feedback')
+            .then(response => response.json())
+            .then(feedbackData => {
+                const container = document.getElementById('feedback-container');
+                feedbackData.forEach(feedback => {
+                    const feedbackDiv = document.createElement('div');
+                    feedbackDiv.innerHTML = `
+                        <h3>${feedback.CustomerName}</h3>
+                    <p>${feedback.Feedback}</p>
+                    <p>Rating: ${feedback.Rating}</p>
+                    container.appendChild(feedbackDiv);
+                `
+                });
+            })
+            .catch(error => console.error('Error fetching feedback:', error));
+    </script>
+</body>
+
+</html>
