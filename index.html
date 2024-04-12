@@ -13,7 +13,7 @@
         <!-- Feedback will be displayed here -->
     </div>
     <script>
-        fetch('http://localhost:3000/api/feedback')
+        fetch('http://localhost/api/feedback')
             .then(response => response.json())
             .then(feedbackData => {
                 const container = document.getElementById('feedback-container');
